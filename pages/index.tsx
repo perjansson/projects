@@ -38,16 +38,18 @@ interface IndexProps {
 }
 
 export default function Index({ page }: IndexProps) {
-  const renderContent = (content: Content) => {
+  const renderContent = (content: Content, i: number) => {
+    const componentKey = `${content.__typename}_${i}`
+
     switch (content.__typename) {
       case 'Carousel':
-        return <Carousel {...content} />
+        return <Carousel {...content} key={componentKey} />
 
       case 'Grid':
-        return <Grid {...content} />
+        return <Grid {...content} key={componentKey} />
 
       case 'Tray':
-        return <Tray {...content} />
+        return <Tray {...content} key={componentKey} />
 
       default:
         return null
